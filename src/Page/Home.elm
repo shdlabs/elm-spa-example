@@ -5,23 +5,21 @@ module Page.Home exposing (Model, Msg, init, subscriptions, toSession, update, v
 
 import Api exposing (Cred)
 import Api.Endpoint as Endpoint
-import Article exposing (Article, Preview)
 import Article.Feed as Feed
 import Article.Tag as Tag exposing (Tag)
 import Browser.Dom as Dom
 import Html exposing (..)
-import Html.Attributes exposing (attribute, class, classList, href, id, placeholder)
+import Html.Attributes exposing (class, href)
 import Html.Events exposing (onClick)
 import Http
 import Loading
 import Log
 import Page
-import PaginatedList exposing (PaginatedList)
+import PaginatedList
 import Session exposing (Session)
 import Task exposing (Task)
 import Time
 import Url.Builder
-import Username exposing (Username)
 
 
 
@@ -64,7 +62,7 @@ init session =
                 Nothing ->
                     GlobalFeed
 
-        loadTags =
+        _ =
             Http.toTask Tag.list
     in
     ( { session = session
@@ -269,13 +267,13 @@ update msg model =
         CompletedFeedLoad (Ok feed) ->
             ( { model | feed = Loaded feed }, Cmd.none )
 
-        CompletedFeedLoad (Err error) ->
+        CompletedFeedLoad (Err _) ->
             ( { model | feed = Failed }, Cmd.none )
 
         CompletedTagsLoad (Ok tags) ->
             ( { model | tags = Loaded tags }, Cmd.none )
 
-        CompletedTagsLoad (Err error) ->
+        CompletedTagsLoad (Err _) ->
             ( { model | tags = Failed }
             , Log.error
             )
@@ -347,7 +345,7 @@ fetchFeed session feedTabs page =
 
         request =
             case feedTabs of
-                YourFeed cred ->
+                YourFeed _ ->
                     Api.get (Endpoint.feed params) maybeCred decoder
 
                 GlobalFeed ->
