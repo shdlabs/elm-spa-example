@@ -1,0 +1,36 @@
+{
+  "name": "lets-learn",
+  "author": "Lindsay Wardell",
+  "description": "A staring template for building Elm apps with Vite",
+  "license": "proprietary",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "elm-tooling install",
+    "dev": "cross-env TAILWIND_MODE=watch vite --port=4000 --host=0.0.0.0",
+    "prebuild": "elm-tooling install",
+    "build": "cross-env TAILWIND_MODE=build vite build",
+    "serve": "vite preview",
+    "lint": "elm-review",
+    "test": "elm-test-rs",
+    "deploy-staging": "cross-env TAILWIND_MODE=build vite build  && surge -p dist --domain offbeat-talk.surge.sh"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.4",
+    "autoprefixer": "^10.4.8",
+    "cross-env": "^7.0.3",
+    "elm-coverage": "^0.4.1",
+    "elm-debug-transformer": "^1.1.2",
+    "elm-review": "^2.7.4",
+    "elm-tooling": "^1.8.0",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.8.2",
+    "vitawind": "^2.2.4",
+    "vite": "^3.0.9",
+    "vite-plugin-elm": "^2.7.2"
+  }
+}

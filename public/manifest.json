@@ -1,0 +1,15 @@
+{
+  "short_name": "Tamplate",
+  "name": "Tamplate",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#f8fafc",
+  "background_color": "#f8fafc"
+}
